@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<properties>
@@ -14,7 +14,7 @@
 	<artifactId>parent</artifactId>
 	<packaging>pom</packaging>
 	<version>${teastoreversion}</version>
-	
+
 	<modules>
 		<module>interfaces/tools.descartes.teastore.entities</module>
 		<module>./utilities/tools.descartes.teastore.kieker.probes</module>
@@ -59,4 +59,14 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>42.2.23</version>
+	</dependency>
+	<dependency>
+		<groupId>org.influxdb</groupId>
+		<artifactId>influxdb-java</artifactId>
+		<version>2.23</version>
+	</dependency>
 </project>

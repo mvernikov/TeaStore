@@ -1,9 +1,33 @@
 version: '3'
 services:
-  registry:
-    image: descartesresearch/teastore-registry
-    expose:
-      - "8080"
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=k6
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+
+  postgres:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=teastore_db
+      - POSTGRES_USER=teastore_user
+      - POSTGRES_PASSWORD=your_password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influxdb
+      - postgres
+
   db:
     image: descartesresearch/teastore-db
     expose:
@@ -49,3 +73,7 @@ services:
       REGISTRY_HOST: "registry"
     ports:
       - "8080:8080"
+
+volumes:
+  influxdb-data:
+  postgres-data:
